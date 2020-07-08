@@ -13,6 +13,7 @@ namespace TheSnakeGame
     public partial class Game : Form
     {
         Area area = new Area();
+        Snake snake = new Snake();
 
         public Game()
         {
@@ -29,6 +30,9 @@ namespace TheSnakeGame
             area.Top = 100;
             area.Left = 100;
             //area.Location = new Point(100, 100);
+
+            //adding snake body
+            
         }
 
     }
