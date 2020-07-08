@@ -32,7 +32,6 @@ namespace TheSnakeGame
             //area.Location = new Point(100, 100);
 
             //adding snake body
-            
         }
 
     }

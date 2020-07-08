@@ -10,7 +10,7 @@ namespace TheSnakeGame
 {
     class Snake
     {
-        List<PictureBox> snakePixels = new List<PictureBox>();
+        public List<PictureBox> snakePixels = new List<PictureBox>();
 
         public Snake()
         {
@@ -25,7 +25,5 @@ namespace TheSnakeGame
             snakePixel.BackColor = Color.Orange;
             snakePixels.Add(snakePixel);
         }
-
-
     }
 }
