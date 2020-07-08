@@ -17,7 +17,13 @@ namespace TheSnakeGame
         public Game()
         {
             InitializeComponent();
+            InitializeGame();
+        }
+
+        private void InitializeGame()
+        {
             this.Controls.Add(area);
         }
+
     }
 }

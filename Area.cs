@@ -19,8 +19,8 @@ namespace TheSnakeGame
         {
             this.BackColor = Color.LightSteelBlue;
             //this.BackColor = Color.FromArgb(45, 45, 50);
-            this.Height = 200;
-            this.Width = 200;
+            this.Height = 400;
+            this.Width = 400;
         }
 
     }
