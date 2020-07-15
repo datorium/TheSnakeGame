@@ -35,7 +35,7 @@ namespace TheSnakeGame
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-
+            snake.Move();
         }
 
         private void InitializeGame()
@@ -60,20 +60,32 @@ namespace TheSnakeGame
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    snake.HorizontalVelocity = 1;
+                    if(snake.HorizontalVelocity != -1)
+                    {
+                        snake.HorizontalVelocity = 1;
+                    }                    
                     snake.VerticalVelocity = 0;
                     break;
                 case Keys.Left:
-                    snake.HorizontalVelocity = -1;
+                    if(snake.HorizontalVelocity != 1)
+                    {
+                        snake.HorizontalVelocity = -1;
+                    }                    
                     snake.VerticalVelocity = 0;
                     break;
                 case Keys.Down:
                     snake.HorizontalVelocity = 0;
-                    snake.VerticalVelocity = 1;
+                    if(snake.VerticalVelocity != -1)
+                    {
+                        snake.VerticalVelocity = 1;
+                    }
                     break;
                 case Keys.Up:
                     snake.HorizontalVelocity = 0;
-                    snake.VerticalVelocity = -1;
+                    if(snake.VerticalVelocity != 1)
+                    {
+                        snake.VerticalVelocity = -1;
+                    }
                     break;
             }
         }

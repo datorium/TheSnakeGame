@@ -51,6 +51,11 @@ namespace TheSnakeGame
 
         public void Move()
         {
+            if(this.HorizontalVelocity == 0 && this.VerticalVelocity == 0)
+            {
+                return;
+            }
+            
             for(int i = snakePixels.Count - 1; i > 0; i--)
             {
                 snakePixels[i].Location = snakePixels[i-1].Location;
