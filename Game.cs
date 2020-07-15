@@ -50,6 +50,32 @@ namespace TheSnakeGame
 
             //adding snake body
             snake.Render(this);
+
+            //add keyboard controller handler
+            this.KeyDown += new KeyEventHandler(Game_KeyDown);
+        }
+
+        private void Game_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    snake.HorizontalVelocity = 1;
+                    snake.VerticalVelocity = 0;
+                    break;
+                case Keys.Left:
+                    snake.HorizontalVelocity = -1;
+                    snake.VerticalVelocity = 0;
+                    break;
+                case Keys.Down:
+                    snake.HorizontalVelocity = 0;
+                    snake.VerticalVelocity = 1;
+                    break;
+                case Keys.Up:
+                    snake.HorizontalVelocity = 0;
+                    snake.VerticalVelocity = -1;
+                    break;
+            }
         }
 
     }
