@@ -67,10 +67,11 @@ namespace TheSnakeGame
 
         private void SetFoodLocation()
         {
-            bool touch = false;
+            bool touch;
             do
             {
-                RandomizeFoodLocation();    
+                RandomizeFoodLocation();
+                touch = false;
                 foreach (var sp in snake.snakePixels)
                 {
                     if (sp.Location == food.Location)
