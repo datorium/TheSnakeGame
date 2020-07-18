@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace TheSnakeGame
 {
     public partial class Game : Form
-    {     
+    {
+        private int score = 0;
         Area area = new Area();
         Snake snake = new Snake();
         Timer mainTimer = new Timer();
@@ -35,6 +36,7 @@ namespace TheSnakeGame
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             snake.Move();
+            SnakeFoodCollision();
         }
 
         private void InitializeGame()
@@ -46,6 +48,9 @@ namespace TheSnakeGame
             area.Top = 100;
             area.Left = 100;
             //area.Location = new Point(100, 100);
+
+            //set score to 0
+            score = 0;
 
             //adding snake body
             snake.Render(this);
@@ -82,6 +87,19 @@ namespace TheSnakeGame
                 }
             }
             while (touch);
+        }
+
+        private void SnakeFoodCollision()
+        {
+            if (snake.snakePixels[0].Bounds.IntersectsWith(food.Bounds))
+            {
+                //increase score
+                score += 10;
+                //regenerate food
+                SetFoodLocation();
+                //add a pixel to the snake
+
+            }
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
