@@ -11,13 +11,12 @@ using System.Windows.Forms;
 namespace TheSnakeGame
 {
     public partial class Game : Form
-    {
-        int horVelocity = 0;
-        int verVelocity = 0;
-        int step = 20;        
+    {     
         Area area = new Area();
         Snake snake = new Snake();
         Timer mainTimer = new Timer();
+        Food food = new Food();
+        Random rand = new Random();
 
         public Game()
         {
@@ -50,6 +49,12 @@ namespace TheSnakeGame
 
             //adding snake body
             snake.Render(this);
+
+            //adding food to the game
+            this.Controls.Add(food);
+            food.BringToFront();
+            food.Top = 100 + rand.Next(0, 20) * 20;
+            food.Left = 100 + rand.Next(0, 20) * 20;
 
             //add keyboard controller handler
             this.KeyDown += new KeyEventHandler(Game_KeyDown);
