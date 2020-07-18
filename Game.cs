@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,6 +38,8 @@ namespace TheSnakeGame
         {
             snake.Move();
             SnakeFoodCollision();
+            SnakeBorderCollision();
+            SnakeSelfCollision();
         }
 
         private void InitializeGame()
@@ -97,9 +100,43 @@ namespace TheSnakeGame
                 score += 10;
                 //regenerate food
                 SetFoodLocation();
-                //add a pixel to the snake
-
+                //add new pixel to the snake
+                int left = snake.snakePixels[snake.snakePixels.Count - 1].Left;
+                int top = snake.snakePixels[snake.snakePixels.Count - 1].Top;
+                snake.AddPixel(left, top);
+                snake.Render(this);
+                //increase movement speed
+                if(mainTimer.Interval >= 20)
+                {
+                    mainTimer.Interval -= 20;
+                }                
             }
+        }
+        private void SnakeBorderCollision()
+        {
+            if (!snake.snakePixels[0].Bounds.IntersectsWith(area.Bounds))
+            {
+                GameOver();
+            }
+        }
+
+        private void SnakeSelfCollision()
+        {
+            for(int i = 1; i < snake.snakePixels.Count; i++)
+            {
+                if (snake.snakePixels[0].Bounds.IntersectsWith(snake.snakePixels[i].Bounds))
+                {
+                    GameOver();
+                }                   
+            }
+        }
+
+        private void GameOver()
+        {
+            mainTimer.Stop();
+            snake.snakePixels[0].BackColor = Color.Red;
+            snake.snakePixels[0].BringToFront();
+            MessageBox.Show("Game over! Your score: " + score);
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
