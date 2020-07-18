@@ -53,11 +53,34 @@ namespace TheSnakeGame
             //adding food to the game
             this.Controls.Add(food);
             food.BringToFront();
-            food.Top = 100 + rand.Next(0, 20) * 20;
-            food.Left = 100 + rand.Next(0, 20) * 20;
+            SetFoodLocation();
 
             //add keyboard controller handler
             this.KeyDown += new KeyEventHandler(Game_KeyDown);
+        }
+
+        private void RandomizeFoodLocation()
+        {
+            food.Top = 100 + rand.Next(0, 20) * 20;
+            food.Left = 100 + rand.Next(0, 20) * 20;
+        }
+
+        private void SetFoodLocation()
+        {
+            bool touch = false;
+            do
+            {
+                RandomizeFoodLocation();    
+                foreach (var sp in snake.snakePixels)
+                {
+                    if (sp.Location == food.Location)
+                    {
+                        touch = true;
+                        break;
+                    }                        
+                }
+            }
+            while (touch);
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
